@@ -34,6 +34,8 @@ module FayeHeroku
 
     # add faye to rack middleware
     config.middleware.delete Rack::Lock
-    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+      add_extension(ClientEvent.new)
+    end
   end
 end
